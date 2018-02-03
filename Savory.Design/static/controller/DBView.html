@@ -1,0 +1,121 @@
+﻿<ol class="breadcrumb">
+    <li><a ui-sref="welcome">Lucy</a></li>
+    <li><a ui-sref="dbs">数据库列表</a></li>
+    <li class="active">{{dbName}}</li>
+</ol>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <a class="btn btn-success" ng-click="openCreateTableModal()">添加表</a>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>名称</th>
+            <th>描述</th>
+            <th>当前版本号</th>
+            <th>创建时间</th>
+            <th>最后更新时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="{{table.css}}" ng-repeat="table in tableList" ng-click="viewTable(table)">
+            <td>{{table.tableName}}</td>
+            <td>{{table.description}}</td>
+            <td>{{table.schemaVersion}}</td>
+            <td>{{table.createTime}}</td>
+            <td>{{table.lastUpdateTime}}</td>
+            <th>删除</th>
+        </tr>
+    </tbody>
+</table>
+<div class="panel panel-info" ng-show="currentTable!=null">
+    <div class="panel-heading">{{currentTable.tableName}} - 表结构</div>
+    <div class="panel-body">
+
+        <!-- show table start -->
+        <table class="table" ng-show="!isEditing">
+            <thead>
+                <tr>
+                    <th>字段名称</th>
+                    <th>字段类型</th>
+                    <th>字段长度</th>
+                    <th>可为空</th>
+                    <th>描述</th>
+                    <th>外键</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="field in fieldList">
+                    <td>{{field.fieldName}}</td>
+                    <td>{{field.fieldType}}</td>
+                    <td>{{field.fieldLength}}</td>
+                    <td ng-show="field.fieldNullable">是</td>
+                    <td ng-show="!field.fieldNullable">否</td>
+                    <td>{{field.fieldDescription}}</td>
+                    <td>外键</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- show table end -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <a class="btn btn-success" ng-click="newField()" ng-show="isEditing">新增字段</a>
+                </div>
+            </div>
+        </div>
+        <!-- update table start -->
+        <div class="list-group-item" ng-show="isEditing">
+            <div class="row">
+                <div class="col-sm-1">
+                    <label class="form-control-static">排序</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-static">字段名称</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-static">字段类型</label>
+                </div>
+                <div class="col-sm-1">
+                    <label class="form-control-static">字段长度</label>
+                </div>
+                <div class="col-sm-1">
+                    <label class="form-control-static">可为空</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-static">描述</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-static">操作</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="fields">
+            <field ng-repeat="field in newFieldList" old-field="field"></field>
+        </div>
+        <!-- update table end -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <a class="btn btn-success" ng-click="startEdit()" ng-show="!isEditing">编辑</a>
+                <a class="btn btn-danger" ng-click="saveEdit()" ng-show="isEditing">保存</a>
+                <a class="btn btn-success" ng-click="cancelEdit()" ng-show="isEditing">取消</a>
+            </div>
+        </div>
+        <div class="row" ng-show="errormsg">
+            <div class="col-sm-12">
+                <p class="text-danger" style="padding-top:15px;padding-bottom:15px">{{errormsg}}</p>
+            </div>
+        </div>
+        <div class="row" ng-show="isprocessing">
+            <div class="col-sm-12">
+                <img src="/static/images/waiting.gif" /><span>处理中，请稍后</span>
+            </div>
+        </div>
+    </div>
+</div>

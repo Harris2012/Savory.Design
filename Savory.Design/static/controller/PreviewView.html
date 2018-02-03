@@ -1,0 +1,66 @@
+﻿<div class="row">
+    <div class="col-sm-3 col-md-2 col-lg-2 sidebar">
+        <div id="ajax"></div>
+    </div>
+    <div class="col-sm-9 col-md-10 col-lg-10">
+        <ol class="breadcrumb">
+            <li><a href="#">Lucy</a></li>
+            <li class="active">数据表设计</li>
+        </ol>
+        <div ng-app="preview" ng-controller="preview_controller" ng-init="init()">
+            <div class="alert alert-info" style="display:none;" ng-click="removeMessage()">
+                <span></span>
+                <i class="glyphicon glyphicon-remove pull-right"></i>
+            </div>
+            <div class="alert alert-danger" style="display:none;" ng-click="removeMessage()">
+                <span></span>
+                <i class="glyphicon glyphicon-remove pull-right"></i>
+            </div>
+            <blockquote>
+                <input type="text" class="tableName" placeholder="数据表名称" />
+            </blockquote>
+
+            <div class="panel panel-default mb10">
+                <div class="panel-heading">表字段</div>
+                <div class="panel-body" style="padding:20px">
+                    <div class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <label class="form-control-static">排序</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="form-control-static">字段名称</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="form-control-static">字段类型</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="form-control-static">字段长度</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="form-control-static">可为空</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="form-control-static">操作</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="fields">
+                        <field ng-repeat="field in fieldList" field="{{field}}"></field>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a class="btn btn-success" ng-click="newField()">新增字段</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="btn btn-danger" ng-click="saveTable()">保存表</a>
+
+            <div>
+                <p>{{fieldList}}</p>
+            </div>
+        </div>
+    </div>
+</div>

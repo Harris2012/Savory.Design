@@ -1,0 +1,76 @@
+﻿<div class="list-group-item">
+    <div class="row" ng-show="!oldField.isEditing">
+        <div>
+            <div class="col-sm-1">
+                <label class="form-control-static">{{oldField.fieldIndex}}</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="form-control-static">{{oldField.fieldName}}</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="form-control-static">{{oldField.fieldType}}</label>
+            </div>
+            <div class="col-sm-1">
+                <label class="form-control-static">{{oldField.fieldLength}}</label>
+            </div>
+            <div class="col-sm-1">
+                <label class="form-control-static" ng-show="oldField.fieldNullable">是</label>
+                <label class="form-control-static" ng-show="!oldField.fieldNullable">否</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="form-control-static">{{oldField.fieldDescription}}</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="form-control-static"><a href="javascript:void(0);" ng-click="openEditField()">编辑</a></label>
+                <label class="form-control-static"><a href="javascript:void(0);" ng-click="deleteField()">删除</a></label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <ng-form name="fieldForm" ng-show="oldField.isEditing">
+            <div class="col-sm-1">
+                <label class="form-control-static">{{oldField.fieldIndex}}</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" ng-model="newField.fieldName" name="fieldName" required />
+            </div>
+            <div class="col-sm-2">
+                <input type="hidden" ng-model="newField.fieldType" name="fieldType" required />
+                <span class="form-control" ng-click="fieldTypeBoxClicked($event)" ng-show="newField.fieldType==null">请选择</span>
+                <span class="form-control" ng-click="fieldTypeBoxClicked($event)" ng-show="newField.fieldType!=null">{{newField.fieldType}}</span>
+                <ul class="field-type-selection" ng-show="isEditingFieldType">
+                    <li class="l1" ng-repeat="fieldGroup in fieldTypeGroupList" onmouseenter="filedTypeL1MouseEnter(this)" onmouseleave="fieldTypeL1MouseLeave(this)">
+                        <span>{{fieldGroup.groupName}}</span>
+                        <ul style="display:none">
+                            <li class="l2" ng-repeat="fieldType in fieldGroup.fieldList" data-type="{{fieldType.fieldName}}" data-lengthomissable="{{fieldType.lengthOmissable}}" ng-click="l2Click($event)">{{fieldType.fieldName}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" ng-readonly="newField.lengthOmissable" ng-model="newField.fieldLength" />
+            </div>
+            <div class="col-sm-1">
+                <div class="checkbox icheck-success">
+                    <input type="checkbox" id="{{newField}}_nullable" ng-model="newField.fieldNullable" />
+                    <label for="{{newField}}_nullable"></label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <textarea class="form-control" placeholder="请输入字段描述" name="fieldDescription" ng-model="newField.fieldDescription" required />
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-default" ng-click="cancelEditField()">取消</button>
+                <button class="btn btn-warning" ng-click="saveField()" ng-disabled="fieldForm.fieldName.$invalid || fieldForm.fieldType.$invalid || fieldForm.fieldDescription.$invalid">保存</button>
+            </div>
+        </ng-form>
+        <!--<div class="row">
+            <div class="col-sm-12">
+                <p>{{oldField}}</p>
+            </div>
+            <div class="col-sm-12">
+                <p>{{newField}}</p>
+            </div>
+        </div>-->
+    </div>
+</div>

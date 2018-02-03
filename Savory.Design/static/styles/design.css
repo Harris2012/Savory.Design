@@ -1,0 +1,110 @@
+.mb10 {
+  margin-bottom: 10px;
+}
+#menu ul a {
+  padding-left: 30px;
+}
+/*TabPanel's Body*/
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+/* Syntax Highlighter */
+.syntaxhighlighter {
+  margin-top: 0px !important;
+  padding-top: 10px;
+}
+.syntaxhighlighter .toolbar {
+  display: none;
+}
+#preview .tab-pane {
+  padding: 10px;
+  min-height: 100px;
+}
+.panel-heading {
+  cursor: pointer;
+}
+.tableName {
+  width: 100%;
+  border: 0;
+  outline: none;
+}
+.field-placeholder {
+  border: 1px dotted #ddd;
+  height: 40px;
+}
+/*字段类型下拉框 Begin*/
+.field-type-box {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #fff;
+  cursor: default;
+}
+.field-type-box.on {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.field-type-box:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e252";
+  float: right;
+}
+.field-type-selection {
+  position: absolute;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  min-width: 200px;
+  z-index: 9999;
+  background: #fff;
+}
+.field-type-selection ul {
+  position: absolute;
+  left: 198px;
+  margin-top: -32px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  list-style: none;
+  padding-left: 0;
+  min-width: 150px;
+}
+.field-type-selection li {
+  height: 32px;
+  line-height: 32px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.field-type-selection li:hover {
+  background: #e0e0e0;
+}
+.field-type-selection .on {
+  background: #e0e0e0;
+}
+/*字段类型下拉框 End*/
+/*设置工具箱里面的字段的样式*/
+#toolbox .display,
+#toolbox .edit {
+  display: none;
+}
+/*设置拖拽过程中字段的样式*/
+.ui-draggable-dragging .title {
+  display: block !important;
+}
+.ui-draggable-dragging .display {
+  min-width: 200px;
+  display: none !important;
+}
+.ui-draggable-dragging .edit {
+  display: none !important;
+}
+/*设置Fields里面的字段的样式*/
+#fields .title,
+#fields .display {
+  display: none;
+}
+#success-msg .glyphicon,
+#error-msg .glyphicon {
+  cursor: pointer;
+}
